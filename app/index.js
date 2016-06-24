@@ -27,7 +27,7 @@ function checkRecurrent() {
       handleOffline();
     }
 
-    setTimeout(checkRecurrent, 3000);
+    setTimeout(checkRecurrent, 5000);
   });
 }
 
