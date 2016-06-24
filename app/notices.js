@@ -5,13 +5,19 @@ import fs from 'fs';
 import badwords from 'badwords/array';
 import _ from 'lodash';
 import P from 'bluebird';
+import Chance from 'chance';
 
 P.promisifyAll(fs);
 
+const chance = new Chance();
 const myPlayer = player();
 
+function getRandom(array) {
+  return array[chance.integer({ min: 0, max: array.length - 1 })];
+}
+
 function getRandomBadword(capitalized = true) {
-  const badword = _.shuffle(badwords)[0];
+  const badword = getRandom(badwords);
 
   return capitalized ? _.capitalize(badword) : badword;
 }
@@ -23,9 +29,9 @@ function getRandomNoticeDataGotIt() {
   }).then((files) => {
     const { sounds, images } = files;
 
-    const soundFilePath = path.resolve(`assets/sounds/back/${_.shuffle(sounds)[0]}`);
-    const iconPath = path.resolve(`assets/images/back/${_.shuffle(images)[0]}`);
-    const imagePath = path.resolve(`assets/images/back/${_.shuffle(images)[0]}`);
+    const soundFilePath = path.resolve(`assets/sounds/back/${getRandom(sounds)}`);
+    const iconPath = path.resolve(`assets/images/back/${getRandom(images)}`);
+    const imagePath = path.resolve(`assets/images/back/${getRandom(images)}`);
 
     return {
       notification: {
@@ -46,9 +52,9 @@ function getRandomNoticeDataGone() {
   }).then((files) => {
     const { sounds, images } = files;
 
-    const soundFilePath = path.resolve(`assets/sounds/gone/${_.shuffle(sounds)[0]}`);
-    const iconPath = path.resolve(`assets/images/gone/${_.shuffle(images)[0]}`);
-    const imagePath = path.resolve(`assets/images/gone/${_.shuffle(images)[0]}`);
+    const soundFilePath = path.resolve(`assets/sounds/gone/${getRandom(sounds)}`);
+    const iconPath = path.resolve(`assets/images/gone/${getRandom(images)}`);
+    const imagePath = path.resolve(`assets/images/gone/${getRandom(images)}`);
 
     return {
       notification: {
@@ -65,7 +71,7 @@ function getRandomNoticeDataGone() {
 function notifyInternetConnectionGotIt() {
   getRandomNoticeDataGotIt()
     .then((data) => {
-      myPlayer.play(data.sound, (err) => err && console.log(err));
+      myPlayer.play(data.sound, (err) => err && console.error(err));
       notifier.notify(data.notification);
     });
 }
@@ -73,7 +79,7 @@ function notifyInternetConnectionGotIt() {
 function notifyInternetConnectionGone() {
   getRandomNoticeDataGone()
     .then((data) => {
-      myPlayer.play(data.sound, (err) => err && console.log(err));
+      myPlayer.play(data.sound, (err) => err && console.error(err));
       notifier.notify(data.notification);
     });
 }
