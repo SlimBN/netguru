@@ -1,14 +1,20 @@
 import isOnline from 'is-online';
 import notices from './notices';
 
+let currentlyOnline = true;
+
 function check() {
   isOnline((err, online) => {
-    if (online === true) {
-      notices.notifyInternetConnectionGotIt();
-    } else if (online === false) {
-      notices.notifyInternetConnectionGone();
+    if (online) {
+      if (!currentlyOnline) {
+        notices.notifyInternetConnectionGotIt();
+      }
+      currentlyOnline = true;
     } else {
-      notices.notifyInternetConnectionDunno();
+      if (currentlyOnline) {
+        notices.notifyInternetConnectionGone();
+      }
+      currentlyOnline = false;
     }
 
     setTimeout(check, 3000);
