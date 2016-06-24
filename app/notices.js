@@ -52,7 +52,7 @@ function getRandomNoticeDataGone() {
 
     return {
       notification: {
-        title: `${getRandomWord()}!`,
+        title: `${getRandomBadWord()}!`,
         message: `${getRandomBadword()}! ${getRandomBadword()}! ${getRandomBadword()}!!! Your Internet is back!`,
         icon: iconPath,
         contentImage: imagePath,
