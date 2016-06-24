@@ -21,7 +21,8 @@
   "dependencies": {
     "bluebird": "^3.4.1",
     "is-online": "^5.1.1",
-    "node-notifier": "^4.6.0"
+    "node-notifier": "^4.6.0",
+    "play-sound": "0.0.9"
   },
   "devDependencies": {
     "babel-loader": "^6.2.4",
