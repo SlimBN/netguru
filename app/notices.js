@@ -37,7 +37,7 @@ function getRandomNoticeDataGotIt() {
     return {
       notification: {
         title: `Yay! Your Internet is back!`,
-        message: `Rejoice and live forever in eternal happiness and peace!`,
+        message: `🎉 ✨ Rejoice and live forever in eternal happiness and peace! ✨ 🎉`,
         icon: iconPath,
         contentImage: imagePath,
       },
@@ -60,7 +60,7 @@ function getRandomNoticeDataGone() {
     return {
       notification: {
         title: `${getRandomBadword()}!`,
-        message: `${getRandomBadword()}! ${getRandomBadword()}! ${getRandomBadword()}!!! Your Internet is gone!`,
+        message: `💀 ☠${getRandomBadword()}! ${getRandomBadword()}! ${getRandomBadword()}!!! Your Internet is gone! ☠ 💀`,
         icon: iconPath,
         contentImage: imagePath,
       },
