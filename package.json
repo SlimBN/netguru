@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bardzusny/netguru/issues"
   },
-  "homepage": "https://github.com/bardzusny/netguru#readme"
+  "homepage": "https://github.com/bardzusny/netguru#readme",
+  "dependencies": {
+    "node-notifier": "^4.6.0"
+  }
 }
