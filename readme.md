@@ -11,3 +11,5 @@ npm install
 npm run build
 npm run start
 ```
+
+`Say` module is required.
