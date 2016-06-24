@@ -13,7 +13,7 @@ function getRandomBadword(capitalized = true) {
 }
 
 function getRandomNoticeDataGone() {
-  const soundFilePath = path.resolve('sounds/gone/linda-wypierdalac.mp3');
+  const soundFilePath = path.resolve('assets/sounds/gone/linda-wypierdalac.mp3');
 
   return {
     notification: {
