@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/bardzusny/netguru#readme",
   "dependencies": {
+    "badwords": "^1.0.0",
     "bluebird": "^3.4.1",
     "is-online": "^5.1.1",
     "node-notifier": "^4.6.0",
