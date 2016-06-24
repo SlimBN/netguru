@@ -6,6 +6,7 @@ import badwords from 'badwords/array';
 import _ from 'lodash';
 import P from 'bluebird';
 import Chance from 'chance';
+import say from 'say';
 
 P.promisifyAll(fs);
 
@@ -59,7 +60,7 @@ function getRandomNoticeDataGone() {
     return {
       notification: {
         title: `${getRandomBadword()}!`,
-        message: `${getRandomBadword()}! ${getRandomBadword()}! ${getRandomBadword()}!!! Your Internet is back!`,
+        message: `${getRandomBadword()}! ${getRandomBadword()}! ${getRandomBadword()}!!! Your Internet is gone!`,
         icon: iconPath,
         contentImage: imagePath,
       },
@@ -79,7 +80,13 @@ function notifyInternetConnectionGotIt() {
 function notifyInternetConnectionGone() {
   getRandomNoticeDataGone()
     .then((data) => {
-      myPlayer.play(data.sound, (err) => err && console.error(err));
+      if (Math.random() < 0.25 &&
+        data.notification.message.replace(/(!|[0-9]|\*)/g, '') === data.notification.message.replace(/!/g, '')) {
+        say.speak(data.notification.message.split('!!!')[0]);
+      } else {
+        myPlayer.play(data.sound, (err) => err && console.error(err));
+      }
+
       notifier.notify(data.notification);
     });
 }
