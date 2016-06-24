@@ -1,17 +1,24 @@
 import notifier from 'node-notifier';
 import player from 'play-sound';
 import path from 'path';
+import badwords from 'badwords/array';
+import _ from 'lodash';
 
 const myPlayer = player();
+
+function getRandomBadword(capitalized = true) {
+  const badword = badwords[Math.floor(Math.random() * badwords.length)];
+
+  return capitalized ? _.capitalize(badword) : badword;
+}
 
 function getRandomNoticeDataGone() {
   const soundFilePath = path.resolve('sounds/gone/linda-wypierdalac.mp3');
 
   return {
     notification: {
-      title: 'Internet is gone - title',
-      subtitle: 'Internet is gone - subtitle',
-      message: 'Internet is gone - message',
+      title: `${getRandomBadword()}!`,
+      message: `${getRandomBadword()}! ${getRandomBadword()}! ${getRandomBadword()}!!! Your Internet connection just stopped working.`,
     },
     sound: soundFilePath,
   };
