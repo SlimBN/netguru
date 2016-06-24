@@ -3,18 +3,6 @@ import notices from './notices';
 
 let currentlyOnline = true;
 
-function check() {
-  isOnline((err, online) => {
-    if (online) {
-      handleOnline();
-    } else {
-      handleOffline();
-    }
-
-    setTimeout(check, 3000);
-  });
-}
-
 function handleOnline() {
   if (!currentlyOnline) {
     notices.notifyInternetConnectionGotIt();
@@ -29,4 +17,18 @@ function handleOffline() {
   currentlyOnline = false;
 }
 
-check();
+function checkRecurrent() {
+  isOnline((err, online) => {
+    if (online) {
+      console.log('Got Internet');
+      handleOnline();
+    } else {
+      console.log('Internet is gone');
+      handleOffline();
+    }
+
+    setTimeout(checkRecurrent, 3000);
+  });
+}
+
+checkRecurrent();
