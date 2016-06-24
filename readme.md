@@ -1,7 +1,5 @@
 # Netguru
 
-## :notebook: Description
-
 Use our simple app to get MacOS notification about changing state of your connection!
 
 ## :hammer: Setup
